@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design – Portfolio</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background:#222;
+      color: #fff;
+    }
+
+    /* HEADER (same as homepage) */
+  header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: linear-gradient(#111, #222);
+      overflow: visible;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      font-size: 14px;
+      color: #c1c1c1;
+    }
+
+    nav a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    nav .active {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    /* LAYOUT */
+    .layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      padding-top: 80px;
+    }
+
+    /* SIDE NAV */
+    aside {
+      position: sticky;
+      top: 120px;
+      height: fit-content;
+      padding: 0 40px;
+      font-size: 13px;
+    }
+
+    aside h3 {
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    aside ul {
+      list-style: none;
+    }
+
+    aside li {
+      margin-bottom: 10px;
+    }
+
+    aside a {
+      color: #cccccc;
+      text-decoration: none;
+    }
+
+    aside a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+    aside a.active {
+    color: #fff;
+    font-weight: 600;
+    text-decoration: underline;
+    }
+    /* CONTENT */
+    main {
+      padding: 0 10vw 200px;
+    }
+
+    section {
+      margin-bottom: 200px;
+    }
+
+    section h2 {
+      font-size: 48px;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    section p {
+      max-width: 640px;
+      line-height: 1.6;
+      color: #444;
+      margin-bottom: 40px;
+      margin-top: 40px;
+    }
+    .process-text {
+      max-width: 640px;
+      color: #828282;
+      font-style: italic;
+    }
+
+    .media {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 40px;
+    }
+
+    .media img {
+      width: 100%;
+      display: block;
+    }
+
+    .mobile-sections {
+        display: none;
+    }
+    /* MOBILE */
+    
+  @media (max-width: 1000px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  aside {
+    display: none;
+  }
+
+  .mobile-nav {
+    display: block;
+  }
+}
+
+
+    .mobile-sections select {
+    background: #111;
+    color: #fff;
+    border: 1px solid #333;
+    padding: 6px 10px;
+    font-size: 13px;
+    }
+    /* FINAL IMAGE */
+.media-final {
+  margin: 60px 0 80px;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.media-final img {
+  width: 100%;
+  max-width: 800px;
+}
+
+/* PROCESS SKETCHES */
+.media-process {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 20px;
+  max-width: 800px;
+  align-items: center;
+}
+
+.media-process img {
+  width: 100%;
+  opacity: 0.9;
+}
+/* MOBILE ICON NAV */
+.mobile-nav {
+  display: none;
+  position: relative;
+}
+
+#menuToggle {
+  width: 36px;
+  height: 36px;
+  border: 1px solid #444;
+  background: none;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+#menuToggle:hover {
+  background: #222;
+}
+
+/* DROPDOWN */
+#mobileDropdown {
+  position: absolute;
+  top: 46px;
+  right: 0;
+  background: #111;
+  border: 1px solid #333;
+  padding: 15px;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 220px;
+  z-index: 20;
+}
+
+#mobileDropdown a {
+  color: #aaa;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+#mobileDropdown a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+  </style>
+</head>
+
+<body>
+
+<header>
+  <nav>
+    <ul>
+      <li><a href="index.html">Homepage</a></li>
+      <li><a href="design.html">Design</a></li>
+      <li><a href="illustration.html">Illustration</a></li>
+      <li class="active"><a href="photography.html">Photography</a></li>
+    </ul>
+  </nav>
+ <div class="mobile-nav">
+  <button id="menuToggle" aria-label="Open project navigation">
+    ☰
+  </button>
+
+  <div id="mobileDropdown">
+    <a href="#arch">1 Architecture</a>
+    <a href="#body">2 Body</a>
+    <a href="#other">3 Other</a>
+  </div>
+</div> 
+</header>
+
+<div class="layout">
+
+  <!-- SIDE NAV -->
+  <aside>
+    <h3>Design</h3>
+    <ul>
+      <li><a href="#arch">1 Architecture</a></li>
+      <li><a href="#body">2 Body</a></li>
+      <li><a href="#other">3 Other</a></li>
+    </ul>
+  </aside>
+
+  <!-- CONTENT -->
+  <main>
+
+<section id="arch">
+            <div class="media-final">
+                <img src="IMG_3624.jpg" alt=""><br>
+                <img src="IMG_3639.jpg" alt=""><br>
+                <img src="IMG_3685.jpg" alt=""><br>
+                <img src="IMG_2004.jpg" alt=""><br>
+                <img src="IMG_2025.jpg" alt=""><br>
+                <img src="IMG_4048.jpg" alt=""><br>
+                <img src="IMG_4075.jpg" alt=""><br>
+            </div>
+    </section>
+<section id="body">
+            <div class="media-final">
+                <img src="1.png" alt=""><br>
+                <img src="2.png" alt=""><br>
+                <img src="3.jpg" alt=""><br>
+                <img src="4.jpg" alt=""><br>
+                <img src="5.jpg" alt=""><br>
+           
+             
+
+            </div>
+    </section>
+    <section id="body">
+            <div class="media-final">
+                <img src="1111.png" alt=""><br>
+                <img src="2222.png" alt=""><br>
+                <img src="3333.jpg" alt=""><br>
+                <img src="4444.jpg" alt=""><br>
+                <img src="5555.jpg" alt=""><br>
+                <img src="11.jpg" alt=""><br>
+                <img src="33.jpg" alt=""><br>
+                <img src="55.jpg" alt=""><br>
+                <img src="66.jpg" alt=""><br>
+
+            </div>
+    </section>
+
+
+  </main>
+</div>
+<script>
+  const sections = document.querySelectorAll("main section");
+  const navLinks = document.querySelectorAll("aside a");
+
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === `#${entry.target.id}`) {
+              link.classList.add("active");
+            }
+          });
+        }
+      });
+    },
+    {
+      rootMargin: "-40% 0px -50% 0px",
+      threshold: 0
+    }
+  );
+
+  sections.forEach(section => observer.observe(section));
+</script>
+<script>
+  const toggle = document.getElementById('menuToggle');
+  const dropdown = document.getElementById('mobileDropdown');
+
+  toggle.addEventListener('click', () => {
+    dropdown.classList.toggle('open');
+  });
+
+  dropdown.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      dropdown.classList.remove('open');
+    });
+  });
+</script>
+
+
+</body>
+</html>

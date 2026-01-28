@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design – Portfolio</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: #111;
+    }
+
+    /* HEADER (same as homepage) */
+  header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: linear-gradient(#111, #222);
+      overflow: visible;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    nav a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    nav .active {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* LAYOUT */
+    .layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      padding-top: 80px;
+    }
+
+    /* SIDE NAV */
+    aside {
+    position: sticky;
+    top: 120px;
+    height: fit-content;
+    padding: 0 40px;
+    font-size: 13px;
+    }
+
+    aside h3 {
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    aside ul {
+      list-style: none;
+    }
+
+    aside li {
+      margin-bottom: 10px;
+    }
+
+    aside a {
+      color: #666;
+      text-decoration: none;
+    }
+
+    aside a:hover {
+      color: #111;
+      text-decoration: underline;
+    }
+    aside a.active {
+    color: #111;
+    font-weight: 600;
+    text-decoration: underline;
+    }
+    /* CONTENT */
+    main {
+      padding: 0 10vw 200px;
+    }
+
+    section {
+      margin-bottom: 200px;
+    }
+
+    section h2 {
+      font-size: 48px;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    section p {
+      max-width: 640px;
+      line-height: 1.6;
+      color: #444;
+      margin-bottom: 40px;
+      margin-top: 40px;
+    }
+    .process-text {
+      max-width: 640px;
+      color: #828282;
+      font-style: italic;
+    }
+
+    .media {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 40px;
+    }
+
+    .media img {
+      width: 100%;
+      display: block;
+    }
+
+   .mobile-sections {
+        display: none;
+    }
+    /* MOBILE */
+    
+   @media (max-width: 1000px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  aside {
+    display: none;
+  }
+
+  .mobile-nav {
+    display: block;
+  }
+}
+
+
+    .mobile-sections select {
+    background: #111;
+    color: #fff;
+    border: 1px solid #333;
+    padding: 6px 10px;
+    font-size: 13px;
+    }
+
+    /* FINAL IMAGE */
+.media-final {
+  margin: 60px 0 80px;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.media-final img {
+  width: 100%;
+  max-width: 800px;
+}
+
+/* PROCESS SKETCHES */
+.media-process {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 20px;
+  max-width: 800px;
+  align-items: center;
+}
+
+.media-process img {
+  width: 100%;
+  opacity: 0.9;
+}
+/* MOBILE ICON NAV */
+.mobile-nav {
+  display: none;
+  position: relative;
+}
+
+#menuToggle {
+  width: 36px;
+  height: 36px;
+  border: 1px solid #444;
+  background: none;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+#menuToggle:hover {
+  background: #222;
+}
+
+/* DROPDOWN */
+#mobileDropdown {
+  position: absolute;
+  top: 46px;
+  right: 0;
+  background: #111;
+  border: 1px solid #333;
+  padding: 15px;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 220px;
+  z-index: 20;
+}
+
+#mobileDropdown a {
+  color: #aaa;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+#mobileDropdown a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+  </style>
+</head>
+
+<body>
+
+<header>
+  <nav>
+    <ul>
+      <li><a href="index.html">Homepage</a></li>
+      <li ><a href="design.html">Design</a></li>
+      <li class="active"><a href="illustration.html">Illustration</a></li>
+      <li><a href="photography.html">Photography</a></li>
+    </ul>
+  </nav>
+   <div class="mobile-nav">
+  <button id="menuToggle" aria-label="Open project navigation">
+    ☰
+  </button>
+
+  <div id="mobileDropdown">
+    <a href="#cankar">1 Book Illustration – Don Alfonso</a>
+    <a href="#bruteus">2 Personal Project – BRUTEUS</a>
+    <a href="#bg">2_1 Background Concept Art</a>
+    <a href="#chdes">2_2 Character Design</a>
+    <a href="#mdes">2_3 Monster Design</a>
+    <a href="#lica">3 Hundred Faces</a>
+    <a href="#gallery">4 Skethes & Other</a>
+  </div>
+</div> 
+ 
+</header>
+
+<div class="layout">
+
+  <!-- SIDE NAV -->
+  <aside>
+    <h3>Design</h3>
+    <ul>
+      <li><a href="#cankar">1 Book Illustration – Don Alfonso</a></li>
+      <li><a href="#bruteus">2 Personal Project – BRUTEUS</a></li>
+      <li><a href="#bg">2_1 Background Concept Art</a></li>
+      <li><a href="#chdes">2_2 Character Design</a></li>
+      <li><a href="#mdes">2_3 Monster Design</a></li>
+      <li><a href="#lica">3 Hundred Faces</a></li>
+      <li><a href="#gallery">4 Skethes & Other</a></li>
+    </ul>
+  </aside>
+
+  <!-- CONTENT -->
+  <main>
+
+    <section id="cankar">
+                <h2>1 Book Illustration – Don Alfonso</h2>
+                    <p>
+                    <b>Don Alfonso </b> is a short story by Ivan Cankar. The illustrations follow the story's progression, showing Vavra's loss of touch with reality and gradual decent into delusion.  
+                </p>
+                <p class="process-text">
+                        Drawing inspiration from secession, impressionism and symbolism art present in the begginings of the 20th century, illustrations mix figurative and abstract elements to create a distorted memory, following 
+                         narrator's regretful recalling of the bizzare story. Tecnique combines digital processing of acrylic textures and pencil drawings.
+                </p>
+             <div class="media-process">
+                <img src="alfinic.png" alt="">
+                <img src="alfvinj1.jpg" alt="">
+                <img src="alfvinj3.jpg" alt="">
+            </div>            
+            <div class="media-final">
+                    <img src="alfspread1.jpg" alt=""> <br>
+            </div>
+        
+            <div class="media-process">
+                <img src="cankar fp3.jpg" alt="">
+                <img src="alffullpg2.jpg" alt="">
+            </div>
+            <div class="media-final">
+                    <img src="alfspead2.jpg" alt=""> <br>
+            </div>  
+            <div class="media-process">
+                <img src="alffullpg3.jpg" alt="">
+                <img src="alfvinj4.jpg" alt="">
+            </div>
+           
+
+    </section>
+
+    <section id="bruteus">
+      <h2>2 Personal Project – BRUTEUS</h2>
+            <p>
+                <b>BRUTEUS </b> is a graphic novel in-the-making, taking place in Buenos Aires from 1986.–1990.
+                    The story unfolds in a reimagined world where society has been halved, its population clustered in larger cities and governed by the safety laws of a transnational agency (ACA). 
+            </p>
+            <p class="process-text">
+                    Despite the festival driven populus, in this world, strong desire is dangerous: if awakened without control, it can consume its owner, manifesting in the form of Tainted, strange phantoms roaming the city outskirts. 
+                    Awakening it right, however, allows an individual to use it - developing an ability paradoxically tied to their personality, fears, and ambitions.And so the story starts with a simple phone call from the forgotten land.    
+                </p>
+            <p class="process-text">
+                <b>If you were granted an ability to reach your strongest desire – <br>Would you be able to control it? <br>
+Or will it simply consume you? </b>
+            </p>
+             <div class="media-final">
+                 <img src="brutotok.jpg" alt="">
+ 
+            </div>
+
+
+    </section>
+ <section id="bg">
+      <h2>2_1 Background Concept Art</h2>
+            <p> The world itself is warm and sleazy, drenched in a relentless, oversaturated heat that clings to skin and asphalt.The landscapes and colors are drawn from nostalgia: strong,
+                    vivid tones reminiscent of childhood recollections, painting a sense of the familiar within an unfamiliar world.</p>
+            <p class="process-text">
+                        I’m drawn to silences and the natural rhythms of life, and I tried to weave that into the visual storytelling. <br>
+                        To shape the atmosphere further, the narrative is divided into six arcs, each defined by a dominant color that reflects the weight of the plot and sets the tone for how the story is read.
+            </p>
+            <div class="media-final">
+                 <img src="brutoutskirts.jpg" alt="">
+                <img src="brutpozdvi.png" alt="">  
+                <img src="brutpoz2.jpg" alt="">
+                <img src="brutpozorang.jpg" alt="">
+                <img src="brutpoz3.jpg" alt="">
+                <img src="brutpoz4.jpg" alt="">
+ 
+            </div>
+
+    </section>
+     <section id="chdes">
+      <h2>2_2 Character Design</h2>
+            
+            <div class="media-final">
+                <img src="chshdann.jpg" alt=""> <br>
+                <img src="ch sheets post.jpg" alt=""><br>
+                <img src="ch sheets post11.jpg" alt=""><br>
+                <img src="ch sheets post7.jpg" alt="">  <br>
+                <img src="chshlars.jpg" alt=""><br>
+                <img src="chshva;.jpg" alt=""><br>
+                <img src="chshner.jpg" alt=""><br>
+                <img src="chshneruda.jpg" alt=""><br>
+                 <img src="brutlikovi.png" alt=""><br>
+
+            </div>
+    </section>
+   <section id="mdes">
+      <h2>2_3 Monster Design</h2>
+            <p>
+                <b>Tainted </b>– post-human beings. Their behavoiur differs depending on the nature of their desire, sorting them to 4 categories.
+            </p>
+            <p class="process-text"> 
+                As the in-world desire works as a blessing and a curse, I aimed to connect them to familiar terrifying overlookers, Abrahamic angels.
+                Their known characterictics have been turned upside down, used as an element of horroric chaos outside of human control.
+            </p>
+            <div class="media-final">
+                <img src="taintcher.png" alt=""><br>
+                <img src="taintmal.png" alt=""><br>
+                <img src="taintoph.png" alt=""><br>
+                <img src="taintser.png" alt=""><br>
+
+            </div>
+    </section>
+
+<section id="lica">
+      <h2>3 Hundred Faces</h2>
+            <p>
+               A self-inflicted exercise, practising facial features and interesting fenotypes for a masquerade exhibition at UMAS. 
+            </p>
+            <div class="media-final">
+                <img src="lica1.png" alt=""><br>
+                <img src="lica2.png" alt=""><br>
+            </div>
+    </section>
+<section id="gallery">
+      <h2>4 Skethes & Other</h2>
+            <div class="media-final">
+                <img src="skice.png" alt=""><br>
+                <img src="vehicles.png" alt=""><br>
+                <img src="seccarus.jpg" alt=""><br>
+                <img src="vincente.jpg" alt=""><br>
+                <img src="prica.jpg" alt=""><br>
+                <img src="geto2.jpg" alt=""><br>
+                <img src="sec.jpg" alt=""><br>
+                <img src="alfabig2.jpg" alt=""><br>
+                <img src="Lucienfin.jpg" alt=""><br>
+
+            </div>
+    </section>
+
+
+  </main>
+</div>
+<script>
+  const sections = document.querySelectorAll("main section");
+  const navLinks = document.querySelectorAll("aside a");
+
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === `#${entry.target.id}`) {
+              link.classList.add("active");
+            }
+          });
+        }
+      });
+    },
+    {
+      rootMargin: "-40% 0px -50% 0px",
+      threshold: 0
+    }
+  );
+
+  sections.forEach(section => observer.observe(section));
+</script>
+<script>
+  const toggle = document.getElementById('menuToggle');
+  const dropdown = document.getElementById('mobileDropdown');
+
+  toggle.addEventListener('click', () => {
+    dropdown.classList.toggle('open');
+  });
+
+  dropdown.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      dropdown.classList.remove('open');
+    });
+  });
+</script>
+
+
+</body>
+</html>

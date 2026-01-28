@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design – Portfolio</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: #111;
+    }
+
+    /* HEADER (same as homepage) */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: linear-gradient(#111, #222);
+      overflow: visible;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    nav a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    nav .active {
+      color: #fff;
+      font-weight: 600;
+    }
+
+
+    /* LAYOUT */
+    .layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      padding-top: 80px;
+    }
+
+    /* SIDE NAV */
+    aside {
+    position: sticky;
+    top: 120px;
+    height: fit-content;
+    padding: 0 40px;
+    font-size: 13px;
+    }
+
+    aside h3 {
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    aside ul {
+      list-style: none;
+    }
+
+    aside li {
+      margin-bottom: 10px;
+    }
+
+    aside a {
+      color: #666;
+      text-decoration: none;
+    }
+
+    aside a:hover {
+      color: #111;
+      text-decoration: underline;
+    }
+    aside a.active {
+    color: #111;
+    font-weight: 600;
+    text-decoration: underline;
+    }
+
+    /* CONTENT */
+    main {
+      padding: 0 10vw 200px;
+    }
+
+    section {
+      margin-bottom: 200px;
+    }
+
+    section h2 {
+      font-size: 48px;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    section p {
+      max-width: 640px;
+      line-height: 1.6;
+      color: #444;
+      margin-bottom: 40px;
+      margin-top: 40px;
+    }
+    .process-text {
+      max-width: 640px;
+      color: #828282;
+      font-style: italic;
+    }
+
+    .media {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 40px;
+    }
+
+    .media img {
+      width: 100%;
+      display: block;
+    }
+.mobile-sections {
+        display: none;
+    }
+    /* MOBILE */
+   @media (max-width: 1000px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  aside {
+    display: none;
+  }
+
+  .mobile-nav {
+    display: block;
+  }
+}
+  
+
+    .mobile-sections select {
+    background: #111;
+    color: #fff;
+    border: 1px solid #333;
+    padding: 6px 10px;
+    font-size: 13px;
+    }
+
+    /* FINAL IMAGE */
+.media-final {
+  margin: 60px 0 80px;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.media-final img {
+  width: 100%;
+  max-width: 800px;
+}
+
+/* PROCESS SKETCHES */
+.media-process {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 20px;
+  max-width: 800px;
+  align-items: center;
+}
+
+.media-process img {
+  width: 100%;
+  opacity: 0.9;
+}
+/* MOBILE ICON NAV */
+.mobile-nav {
+  display: none;
+  position: relative;
+}
+
+#menuToggle {
+  width: 36px;
+  height: 36px;
+  border: 1px solid #444;
+  background: none;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+#menuToggle:hover {
+  background: #222;
+}
+
+/* DROPDOWN */
+#mobileDropdown {
+  position: absolute;
+  top: 46px;
+  right: 0;
+  background: #111;
+  border: 1px solid #333;
+  padding: 15px;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 220px;
+  z-index: 20;
+}
+#mobileDropdown {
+  z-index: 999;
+}
+
+#mobileDropdown a {
+  color: #aaa;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+#mobileDropdown a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+#mobileDropdown {
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+#mobileDropdown.open {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+  </style>
+</head>
+
+<body>
+
+<header>
+  <nav>
+    <ul>
+      <li><a href="index.html">Homepage</a></li>
+      <li class="active"><a href="design.html">Design</a></li>
+      <li><a href="illustration.html">Illustration</a></li>
+      <li><a href="photography.html">Photography</a></li>
+    </ul>
+  </nav>
+  <div class="mobile-nav">
+  <button id="menuToggle" aria-label="Open project navigation">
+    ☰
+  </button>
+
+  <div id="mobileDropdown">
+    <a href="#lawrence">1_1 Lawrence of Arabia</a>
+    <a href="#alka">1_2 Sinjska Alka</a>
+    <a href="#buba">1_3 BUBA</a>
+    <a href="#cd">2 CD Cover</a>
+    <a href="#lettering">3 Lettering</a>
+    <a href="#hpms">4 Visual Identity – HPMS</a>
+  </div>
+</div>
+</header>
+
+<div class="layout">
+
+  <!-- SIDE NAV -->
+  <aside>
+    <h3>Design</h3>
+    <ul>
+      <li><a href="#lawrence">1_1 Poster – Lawrence of Arabia</a></li>
+      <li><a href="#alka">1_2 Poster – Sinjska Alka</a></li>
+      <li><a href="#buba">1_3 Poster – BUBA</a></li>
+      <li><a href="#cd">2 CD Cover</a></li>
+      <li><a href="#lettering">3 Lettering</a></li>
+      <li><a href="#hpms">4 Visual Identity – HPMS</a></li>
+    </ul>
+  </aside>
+
+  <!-- CONTENT -->
+  <main>
+
+    <section id="lawrence">
+                <h2>1_1 Poster Design – Lawrence of Arabia</h2>
+                    <p>
+                    <b>Lawrence of Arabia (1962) </b> is an epic biographical adventure directed by David Lean. As part of a collaboration with the NoMAD Movie Art collective, students were invited to
+                    reinterpret cult-classic film posters in their own distinctive styles.
+                </p>
+                <p class="process-text">
+                        Drawing inspiration from hand-illustrated posters of the era,my approach prioritized texture and atmospheric composition. I aimed to create a powerful visual draw, using contrast and
+                        color to conjure the intensity and heat of the Arabian desert. (first and final version)
+                </p>
+
+            <!-- PROCESS -->
+            <div class="media-process">
+                <img src="lawrence001.jpg" alt="">
+                <img src="lawrence.jpg" alt="">
+                <img src="lawrence0.jpg" alt="">
+            </div>
+                <!-- FINAL -->
+            <div class="media-final">
+                    <img src="lawtipo.png" alt=""> <br>
+                <img src="lawrenceposterfin.png" alt="Final poster">
+            </div>
+
+                <p class="process-text">
+                        Countering the intense color from the main piece, I wanted to try playing into the original poster’s color scheme (soft, sandy beiges and warm orange tones), blending the character into
+                        the scenery to have him narratively “lose himself“ on his path through the desert to Aqaba. While fully realised and closer to original, I chose the first version as the final for it’s stronger 
+                        composition and stronger dynamic evoked by color. 
+                </p>
+            <!-- FINAL -->
+            <div class="media-final">
+                <img src="lawrence fin2.png" alt="Second poster">
+            </div>
+            <!-- PROCESS -->
+            <div class="media-process">
+                <img src="lawskkk.png" alt="">
+                <img src="lawskkk2.png" alt="">
+            </div>
+           
+
+    </section>
+
+    <section id="alka">
+      <h2>1_2 Poster Design – Sinjska Alka</h2>
+            <p>
+                    <b>Sinjska Alka </b>  is a traditional knightly equestrian competition held every year in Sinj at the beginning of August.
+            </p>
+            <p class="process-text">
+                        The idea was to collage my hand-drawn elements
+                        (combination of scanned aquarel painting and digital painting)
+                        into a harmony of the contemporary and the traditional.
+                        While a diagonal arrangement or a group of horsemen evokes
+                        a sense of belonging to a military unit and their
+                        community, the final choice of a centered composition
+                        emphasizes the pride of the act itself and the suspense of the
+                        new annual winner.
+                        Intense shades of red reference its accompanying bloody
+                        history, with their strong vibrancy breaking beyond the frame
+                        of the image toward the viewer, as the motive of alka crowns
+                        the galloping knight.
+            </p>
+
+            <!-- PROCESS -->
+            <div class="media-process">
+                <img src="ALKA3.png" alt="">
+                <img src="ALKA viz.png" alt="">
+                <img src="ALKA viz aloun.png" alt="">
+            </div>
+                <!-- FINAL -->
+            <div class="media-final">
+                <img src="ALKA FIN ispit 2.png" alt="Final poster">
+            </div>
+
+    </section>
+
+    <section id="buba">
+      <h2>1_3 Poster Design – BUBA</h2>
+        <p>
+                    <b>BUBA (2024.) </b>   is a silent short film by Josip Šimić.<br>
+                    Building on its strong retro aesthetic and limited color
+                    palette, I created a three-poster series for its premiere.
+                    The motifs closely follow the film’s narrative, visually
+                    blending with its naïve, humorous identity.
+            </p>
+            <p class="process-text">
+                        Since clean, flat shapes differ from my usual style – I found it
+                        an interesting path to explore, shifting focus on utilising color
+                        accents to build composition.
+            </p>
+
+            <!-- PROCESS -->
+            <div class="media-process">
+                <img src="bubaskice.png" alt="">
+                <img src="bubabube.png" alt="">
+            </div>
+                <!-- FINAL -->
+            <div class="media-process">
+                <img src="plakati jpg-01.jpg" alt="Final poster">
+                <img src="plakati jpg-02.jpg" alt="Final poster">
+                <img src="plakati jpg-04.jpg" alt="Final poster">
+
+            </div>
+    </section>
+
+    <section id="cd">
+      <h2>2 CD cover</h2>
+            <p>
+                    Course assignment in Graphic Technologies 2 – packaging and CD cover design for <i>'The First and Last and Always</i> by
+                    <b>The Sisters of Mercy</b>.
+            </p>
+            <p class="process-text">
+                        The front cover is conceived as an analog animation alluding
+                        to transitional states in complexities of human relationships,
+                        reflecting the album’s lyrical themes.
+                        Sliding the semi-transparent plastic sleeve back and forth
+                        causes the figure’s head to turn and the typography to shift,
+                        revealing the band’s name and album title.
+                        The interior holds a simple illustration tying it to the gothic
+                        rock aesthetic, while the chosen color palette aligns with the
+                        band’s distinctive visual identity.
+            </p>
+
+            <!-- PROCESS -->
+             <div class="media-final">
+                <img src="cd3.png" alt="">
+            </div>
+                <!-- FINAL -->
+                 <div class="media-final">
+                <img src="cdmockup.png" alt="Final">
+            </div>
+            <div class="media-final">
+                <img src="cdplast.png" alt="Final">
+            </div>
+        </section>
+        <section id="lettering">
+            <h2>3 Lettering</h2>                 
+
+                    <!-- PROCESS -->
+                    <div class="media-process">
+                        <img src="malicemizmk.png" alt="">
+                        <img src="malicemiz.png" alt="">
+
+                    </div>
+                    <div class="media-process">
+                        <img src="idkhow.png" alt="">
+                        <img src="idkhowmk.png" alt="">
+                    </div>
+                    <div class="media-process">
+                        <img src="iamxmk.png" alt="">
+                        <img src="iamx.png" alt="">
+                    </div>
+                    <div class="media-process">
+                        <img src="poppymk.png" alt="">
+                        <img src="adomk.png" alt="">
+                    </div>
+                    <div class="media-process">
+                        <img src="gin.png" alt="">
+                        <img src="ginmk.png" alt="">
+                    </div>
+                    <div class="media-process">
+                        <img src="teraninomk.png" alt="">
+                        <img src="teranino.png" alt="">
+                    </div>
+                    <div class="media-process">
+                        <img src="konjak.png" alt="">
+                        <img src="konjakmk.png" alt="">
+                    </div>
+                    <div class="media-process">
+                        <img src="heredmk.png" alt="">
+                        <img src="hered.png" alt="">
+                    </div>
+                    <div class="media-process">
+                        <img src="law.png" alt="">
+                        <img src="lawrenceposterfin.png" alt="">
+                    </div>
+                    <div class="media-process">
+                        <img src="akiramk.png" alt="">
+                        <img src="akira.png" alt="">
+                    </div>
+
+            </section>
+             <section id="hpms">
+      <h2>4 Visual Identity – HPMS</h2>
+            <p>
+                The redesign of the visual identity of <b>HMPS</b> <i>(Hrvatski Pomorski Muzej Split)</i> bases itself on the form of the logo and from it derives a system necessary for the development of other visual materials.            </p>
+            <p class="process-text">
+                       
+                        The side view of the museum's trademark "Bakar" ship is linearly reduced to a sketch of a technical drawing inspired by ship blueprints. A triangle derived from the 
+                        same solution is used as a movable base for placing the necessary visuals, providing the possibility of the sign's own integration for stability and general applicability of the material.
+                        The choice of colors connects the vibrancy of the Mediterranean with the maritime tradition.
+            </p>
+
+            
+                <!-- FINAL -->
+            <div class="media-final">
+                <img src="pmst.jpg" alt="Final poster">
+            </div>
+            <div class="media-final">
+                <img src="pmstmk.png" alt="Final poster">
+            </div>
+
+    </section>
+  </main>
+</div>
+<script>
+  const sections = document.querySelectorAll("main section");
+  const navLinks = document.querySelectorAll("aside a");
+
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === `#${entry.target.id}`) {
+              link.classList.add("active");
+            }
+          });
+        }
+      });
+    },
+    {
+      rootMargin: "-40% 0px -50% 0px",
+      threshold: 0
+    }
+  );
+
+  sections.forEach(section => observer.observe(section));
+</script>
+
+<script>
+  const toggle = document.getElementById('menuToggle');
+  const dropdown = document.getElementById('mobileDropdown');
+
+  toggle.addEventListener('click', () => {
+    dropdown.classList.toggle('open');
+  });
+
+  dropdown.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      dropdown.classList.remove('open');
+    });
+  });
+</script>
+
+
+</body>
+</html>
