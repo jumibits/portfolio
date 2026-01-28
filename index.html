@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+  <!-- GSAP for animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: #111;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    header {
+      display: flex;
+      justify-content: flex-end;
+      padding: 20px 40px;
+      background: linear-gradient(#111, #222);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      color: #aaa;
+      font-size: 14px;
+    }
+
+    nav li {
+      cursor: pointer;
+    }
+
+    nav .active {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* CATEGORY LINKS */
+    .categories {
+      display: flex;
+      justify-content: center;
+      gap: 80px;
+      margin: 80px 0;
+    }
+
+    .categories a {
+      color: #111;
+      text-decoration: underline;
+      font-weight: 500;
+      transition: opacity .3s;
+    }
+
+    .categories a:hover { opacity: .5; }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 0 10vw 100px;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(64px, 10vw, 120px);
+      font-weight: 900;
+      letter-spacing: -2px;
+    }
+
+    .hero-text .meta {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #444;
+    }
+
+    .line {
+      width: 300px;
+      height: 2px;
+      background: #111;
+      margin-top: 40px;
+      transform-origin: left;
+    }
+
+    .hero-image {
+      position: relative;
+      justify-self: end;
+    }
+
+    .hero-image img {
+      height: 700px;
+      max-width: 100%;
+    }
+
+    .year {
+      position: absolute;
+      bottom: -20px;
+      right: 0;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* GALLERY */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      padding: 100px 10vw;
+    }
+
+    .card {
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .card img {
+      width: 100%;
+      transition: transform .6s ease;
+    }
+
+    .card:hover img { transform: scale(1.1); }
+
+    /* MOBILE */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 60px;
+      }
+
+      .hero-image { justify-self: center; }
+
+      .categories { gap: 30px; }
+    }
+    nav a {
+    color: inherit;
+    text-decoration: none;
+    }
+
+  </style>
+</head>
+<body>
+<canvas id="cursorCanvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1000;"></canvas>
+
+<header>
+ <nav>
+  <ul>
+    <li class="active"><a href="index.html">Homepage</a></li>
+    <li><a href="design.html">Design</a></li>
+    <li><a href="illustration.html">Illustration</a></li>
+    <li><a href="photography.html">Photography</a></li>
+  </ul>
+</nav>
+
+</header>
+
+<section class="categories">
+  <a href="#">Design</a>
+  <a href="#">Illustration</a>
+  <a href="#">Photography</a>
+</section>
+
+<section class="hero">
+  <div class="hero-text">
+    <h1>Portfolio</h1>
+    <div class="meta">Jumi<br>24, based in Croatia</div>
+    <div class="line"></div>
+  </div>
+
+  <div class="hero-image">
+    <img src="intro.png" alt="Artwork">
+    <span class="year">2026.</span>
+  </div>
+</section>
+
+
+
+<script>
+  gsap.from("header", { y: -60, opacity: 0, duration: 1 });
+  gsap.from(".categories a", { y: 30, opacity: 0, stagger: .2, duration: 1, delay: .3 });
+  gsap.from("h1", { x: -100, opacity: 0, duration: 1, delay: .5 });
+  gsap.from(".meta", { opacity: 0, y: 20, delay: .8 });
+  gsap.from(".line", { scaleX: 0, duration: 1, delay: 1 });
+  gsap.from(".hero-image img", { opacity: 0, x: 100, duration: 1, delay: .6 });
+</script>
+
+<script>
+const canvas = document.getElementById("cursorCanvas");
+const ctx = canvas.getContext("2d");
+
+let width, height;
+let lastPoint = null;
+let lastTime = performance.now();
+let strokes = [];
+
+function resize() {
+  width = canvas.width = window.innerWidth;
+  height = canvas.height = window.innerHeight;
+}
+window.addEventListener("resize", resize);
+resize();
+
+// Utility
+function lerp(a, b, t) {
+  return a + (b - a) * t;
+}
+
+function distance(a, b) {
+  return Math.hypot(b.x - a.x, b.y - a.y);
+}
+
+// Track mouse
+window.addEventListener("mousemove", (e) => {
+  const now = performance.now();
+  const point = { x: e.clientX, y: e.clientY };
+
+  if (lastPoint) {
+    const dt = now - lastTime;
+    const dist = distance(lastPoint, point);
+    const speed = dist / dt;
+
+    // Pressure logic
+    const maxWidth = 2.4;
+    const minWidth = 0.6;
+    const thickness = Math.max(
+      minWidth,
+      maxWidth - speed * 1.5
+    );
+
+    strokes.push({
+      from: lastPoint,
+      to: point,
+      width: thickness,
+      born: now
+    });
+  }
+
+  lastPoint = point;
+  lastTime = now;
+});
+
+// Fade + draw loop
+function draw() {
+  ctx.clearRect(0, 0, width, height);
+
+  const now = performance.now();
+  const lifespan = 3000; // ms
+
+  strokes = strokes.filter(s => now - s.born < lifespan);
+
+  ctx.lineCap = "round";
+  ctx.lineJoin = "round";
+  ctx.strokeStyle = "rgba(0,0,0,0.7)";
+
+  strokes.forEach(s => {
+    const age = (now - s.born) / lifespan;
+    const opacity = 1 - age;
+
+    ctx.globalAlpha = opacity;
+    ctx.lineWidth = s.width;
+
+    ctx.beginPath();
+    ctx.moveTo(s.from.x, s.from.y);
+    ctx.lineTo(s.to.x, s.to.y);
+    ctx.stroke();
+  });
+
+  ctx.globalAlpha = 1;
+  requestAnimationFrame(draw);
+}
+
+draw();
+</script>
+
+</body>
+</html>
