@@ -5,8 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfolio</title>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
+
 
   <!-- GSAP for animations -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -15,7 +19,7 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       background: #fff;
       color: #111;
       overflow-x: hidden;
@@ -44,6 +48,19 @@
     nav .active {
       color: #fff;
       font-weight: 600;
+    }
+    nav ul {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    }
+    
+    .hero-text h1 {
+    font-family: "Special Gothic Expanded One", sans-serif;
+    font-size: clamp(64px, 10vw, 120px);
+    font-weight: 400; /* IMPORTANT: this font only has one weight */
+    letter-spacing: -1px;
     }
 
     /* CATEGORY LINKS */
@@ -96,10 +113,20 @@
       justify-self: end;
     }
 
-    .hero-image img {
-      height: 700px;
-      max-width: 100%;
+   .hero-image img {
+    height: auto;
+    width: auto;
+    max-height: 900px;
+    max-width: 100%;
+    object-fit: contain;
+    display: block;
     }
+    .hero-image {
+    position: relative;
+    justify-self: end;
+    align-self: center;
+    }
+
 
     .year {
       position: absolute;
@@ -131,12 +158,31 @@
 
     /* MOBILE */
     @media (max-width: 900px) {
-      .hero {
+    .hero {
         grid-template-columns: 1fr;
-        gap: 60px;
-      }
+        gap: 40px;
+        padding: 0 6vw 80px;
+    }
 
-      .hero-image { justify-self: center; }
+    .hero-image {
+        order: -1; /* image goes first */
+        justify-self: center;
+    }
+
+    .hero-image img {
+        max-height: none;
+        width: 100%;
+        height: auto;
+    }
+
+    .hero-text h1 {
+        font-size: clamp(48px, 12vw, 72px);
+    }
+
+    .line {
+        width: 200px;
+    }
+    
 
       .categories { gap: 30px; }
     }
@@ -162,16 +208,11 @@
 
 </header>
 
-<section class="categories">
-  <a href="#">Design</a>
-  <a href="#">Illustration</a>
-  <a href="#">Photography</a>
-</section>
 
 <section class="hero">
   <div class="hero-text">
     <h1>Portfolio</h1>
-    <div class="meta">Jumi<br>24, based in Croatia</div>
+    <div class="meta"><b>MKP</b><br>24, based in Croatia</div>
     <div class="line"></div>
   </div>
 
