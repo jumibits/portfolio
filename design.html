@@ -19,37 +19,42 @@
     }
 
     /* HEADER (same as homepage) */
-    header {
-      justify-content: flex-end;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 10;
-      display: flex;
-      align-items: center;
-      padding: 20px 40px;
-      background: linear-gradient(#111, #222);
-    }
+    
+      header {
+  position: fixed;          /* ← makes it stay while scrolling */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: clamp(12px, 4vw, 20px) clamp(16px, 6vw, 40px);
+  background: linear-gradient(#111, #222);
+}
+    
     nav ul {
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 500;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 30px;
-      font-size: 14px;
-      color: #aaa;
+    list-style: none;
+    display: flex;
+    gap: clamp(14px, 4vw, 30px);
+    font-size: clamp(11px, 2.8vw, 14px);
+    letter-spacing: clamp(0.02em, 0.4vw, 0.04em);
+    color: #aaa;
+    white-space: nowrap;
     }
 
     nav a {
       color: inherit;
       text-decoration: none;
     }
-
+nav ul {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    }
     nav .active {
       color: #fff;
       font-weight: 600;
@@ -60,7 +65,7 @@
     .layout {
       display: grid;
       grid-template-columns: 260px 1fr;
-      padding-top: 80px;
+      padding-top: 100px;
     }
 
     /* SIDE NAV */
@@ -141,6 +146,26 @@
 .mobile-sections {
         display: none;
     }
+    @media (min-width: 1200px) {
+  nav {
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  header {
+    justify-content: center;
+  }
+}
+.mobile-nav {
+  position: relative; /* ← THIS is required */
+  display: none;
+}
+ 
+#mobileDropdown {
+  right: 0;
+}
+
     /* MOBILE */
    @media (max-width: 1000px) {
   .layout {
