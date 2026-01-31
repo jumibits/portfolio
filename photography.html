@@ -14,62 +14,67 @@
 
     body {
       font-family: 'Montserrat', sans-serif;
-      background:#222;
+      background: #222;
       color: #fff;
     }
 
     /* HEADER (same as homepage) */
-  header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 10;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      padding: 20px 40px;
-      background: linear-gradient(#111, #222);
-    }
-    nav ul {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    }
+    
+      header {
+  position: fixed;          /* ← makes it stay while scrolling */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: clamp(12px, 4vw, 20px) clamp(16px, 6vw, 40px);
+  background: linear-gradient(#111, #222);
+}
+    
     nav ul {
-      list-style: none;
-      display: flex;
-      gap: 30px;
-      font-size: 14px;
-      color: #c1c1c1;
+    list-style: none;
+    display: flex;
+    gap: clamp(14px, 4vw, 30px);
+    font-size: clamp(11px, 2.8vw, 14px);
+    letter-spacing: clamp(0.02em, 0.4vw, 0.04em);
+    color: #aaa;
+    white-space: nowrap;
     }
 
     nav a {
       color: inherit;
       text-decoration: none;
     }
-
+nav ul {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    }
     nav .active {
-      color: #ffffff;
+      color: #fff;
       font-weight: 600;
     }
+
 
     /* LAYOUT */
     .layout {
       display: grid;
       grid-template-columns: 260px 1fr;
-      padding-top: 80px;
+      padding-top: 100px;
     }
 
     /* SIDE NAV */
     aside {
-      position: sticky;
-      top: 120px;
-      height: fit-content;
-      padding: 0 40px;
-      font-size: 13px;
+    position: sticky;
+    top: 120px;
+    height: fit-content;
+    padding: 0 40px;
+    font-size: 13px;
     }
 
     aside h3 {
@@ -86,12 +91,12 @@
     }
 
     aside a {
-      color: #cccccc;
+      color: #666;
       text-decoration: none;
     }
 
     aside a:hover {
-      color: #ffffff;
+      color: #fff;
       text-decoration: underline;
     }
     aside a.active {
@@ -99,6 +104,7 @@
     font-weight: 600;
     text-decoration: underline;
     }
+
     /* CONTENT */
     main {
       padding: 0 10vw 200px;
@@ -137,13 +143,31 @@
       width: 100%;
       display: block;
     }
-
-    .mobile-sections {
+.mobile-sections {
         display: none;
     }
+    @media (min-width: 1200px) {
+  nav {
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  header {
+    justify-content: center;
+  }
+}
+.mobile-nav {
+  position: relative; /* ← THIS is required */
+  display: none;
+}
+ 
+#mobileDropdown {
+  right: 0;
+}
+
     /* MOBILE */
-    
-  @media (max-width: 1000px) {
+   @media (max-width: 1000px) {
   .layout {
     grid-template-columns: 1fr;
   }
@@ -156,7 +180,7 @@
     display: block;
   }
 }
-
+  
 
     .mobile-sections select {
     background: #111;
@@ -165,6 +189,7 @@
     padding: 6px 10px;
     font-size: 13px;
     }
+
     /* FINAL IMAGE */
 .media-final {
   margin: 60px 0 80px;
@@ -224,6 +249,9 @@
   min-width: 220px;
   z-index: 20;
 }
+#mobileDropdown {
+  z-index: 999;
+}
 
 #mobileDropdown a {
   color: #aaa;
@@ -234,6 +262,17 @@
 #mobileDropdown a:hover {
   color: #fff;
   text-decoration: underline;
+}
+#mobileDropdown {
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+#mobileDropdown.open {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
 }
 
   </style>
@@ -344,6 +383,7 @@
 
   sections.forEach(section => observer.observe(section));
 </script>
+
 <script>
   const toggle = document.getElementById('menuToggle');
   const dropdown = document.getElementById('mobileDropdown');
@@ -358,7 +398,6 @@
     });
   });
 </script>
-
 
 </body>
 </html>
